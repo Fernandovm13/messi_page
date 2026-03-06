@@ -1,0 +1,687 @@
+:root{
+  --bg: #03040a;
+  --panel: #071024;
+  --accent: #ffd000;
+  --muted: #95a3b7;
+  --container: 1200px;
+  --radius: 12px;
+  --glass: rgba(255,255,255,0.03);
+  --white: #ffffff;
+  --card-dark: rgba(10,12,20,0.6);
+  --shadow: 0 12px 40px rgba(2,8,20,0.6);
+  --neon: 0 8px 40px rgba(255,200,0,0.08);
+  font-family: 'Open Sans', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{margin:0;background:linear-gradient(180deg,#03040a 0%, #061028 60%, #020315 100%);color:var(--white);-webkit-font-smoothing:antialiased}
+.container{max-width:var(--container);margin:0 auto;padding:0 20px}
+
+/* NAVBAR */
+.navbar{
+  position:fixed;top:0;left:0;right:0;height:72px;display:flex;align-items:center;z-index:60;
+  background:linear-gradient(180deg, rgba(2,6,12,0.7), rgba(2,6,12,0.3));backdrop-filter: blur(6px);
+}
+.navbar .inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--container);margin:0 auto;padding:0 20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--white)}
+.brand .badge{background:var(--accent);color:#071018;padding:8px 10px;border-radius:8px;font-weight:700}
+.brand .text{font-weight:700}
+.navlinks{display:flex;gap:28px;align-items:center}
+.navlinks a{color:rgba(255,255,255,0.9);text-decoration:none;font-weight:600;opacity:.95}
+.cta{background:var(--accent);color:#071018;padding:8px 14px;border-radius:10px;font-weight:700;text-decoration:none}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start; /* fuerza contenido a la izquierda */
+  position:relative;
+  padding-top:72px;
+  background-image: url('/src/assets/Heroo.jpg');
+  background-size:cover;
+  background-position:center right;
+  overflow:hidden;
+}
+
+/* overlay lateral oscuro para destacar texto a la izquierda */
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background: linear-gradient(90deg,
+              rgba(2,6,12,0.96) 0%,
+              rgba(2,6,12,0.88) 18%,
+              rgba(2,6,12,0.55) 40%,
+              rgba(2,6,12,0.20) 65%,
+              rgba(2,6,12,0.10) 100%);
+  z-index:1;pointer-events:none;
+}
+
+.hero .hero-inner{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start; /* asegura alineación izquierda */
+  text-align:left;        /* texto completamente alineado a la izquierda */
+  gap:18px;
+  padding:100px 10 60px 0; /* quitamos padding lateral */
+  margin-left:0;          /* pegado al container */
+  max-width:700px;        /* bloque más compacto como en la imagen */
+}
+/* eyebrow */
+.hero .eyebrow{color:var(--accent);font-weight:700;letter-spacing:1.6px;font-size:14px;display:inline-flex;align-items:center;gap:12px}
+.hero .eyebrow::before{content:"";width:9px;height:9px;border-radius:50%;background: linear-gradient(180deg, #ffd000, #d58b00);display:inline-block;box-shadow: 0 6px 18px rgba(213,138,0,0.15)}
+
+/* título — dos líneas grandes */
+.hero h1{font-family:'Poppins', sans-serif;margin:0;line-height:0.86;text-transform:uppercase;letter-spacing:-1px}
+.hero h1 .line1,
+.hero h1 .line2{
+  display:block;
+  font-weight:900;
+  text-shadow: 0 6px 30px rgba(2,6,12,0.6);
+}
+.hero h1 .line1{color:#ffffff;font-size:clamp(72px, 8vw, 140px)}
+.hero h1 .line2{
+  font-size:clamp(88px, 14vw, 200px);
+  background: linear-gradient(90deg, #ffd000 0%, #e0a400 50%, #c46f00 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  font-weight:900;
+  margin-top:-6px;
+  letter-spacing:-2px;
+}
+/* mantener fallback si se usa la clase .accent */
+.hero h1 .accent{color:var(--accent)}
+
+/* párrafo descriptivo */
+.hero p.lead{color:var(--muted);max-width:720px;font-size:18px;margin-top:6px;line-height:1.6}
+
+/* CTA (solo layout del hero) */
+.hero .cta-wrap{display:flex;gap:14px;margin-top:18px;align-items:center}
+
+/* botones: NO tocar la regla global .btn más abajo — aquí sólo estilos para botones dentro del hero */
+.hero .btn.primary{
+  background: linear-gradient(180deg,#ffd000,#e0a400);
+  color:#071018;
+  border:2px solid rgba(0,0,0,0.12);
+  border-radius:28px;
+  font-weight:800;
+  padding:14px 22px;
+  box-shadow: 0 12px 40px rgba(213,140,0,0.12), 0 3px 18px rgba(2,8,20,0.45);
+}
+.hero .btn.outline{
+  border:1px solid rgba(255,255,255,0.08);
+  background:transparent;
+  color:#fff;
+  padding:12px 20px;
+  border-radius:12px;
+  font-weight:700;
+}
+
+.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700;cursor:pointer}
+.btn.primary{background:var(--accent);color:#071018}
+.btn.outline{border:1px solid rgba(255,255,255,0.08);background:transparent;color:#fff}
+
+/* SECTION: career */
+.section{padding:72px 0}
+.section .title{font-family:'Poppins', sans-serif;text-align:center;font-size:40px;margin:0 0 8px}
+.section .subtitle{text-align:center;color:var(--muted);margin-bottom:28px}
+
+/* cards grid */
+.cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:1100px;margin:36px auto}
+.card{
+  display:flex;align-items:center;gap:16px;background:linear-gradient(180deg, rgba(6,10,20,0.6), rgba(7,16,34,0.7));padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);
+}
+.card .thumb{width:140px;height:120px;border-radius:8px;overflow:hidden;flex-shrink:0}
+.card .thumb img{width:100%;height:100%;object-fit:cover}
+.card h3{margin:0;font-size:16px}
+.card p{margin:6px 0 0;color:var(--muted);font-size:14px}
+
+/* MILESTONES */
+.milestones{max-width:1100px;margin:48px auto}
+.m-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.m-card{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:28px;border-radius:12px;text-align:center;min-height:110px}
+.m-card .num{font-size:28px;color:var(--accent);font-weight:800}
+.m-card .label{margin-top:8px;color:var(--muted)}
+
+/* ICONO EN MILESTONES (no altera estructura) */
+.m-card .m-icon{
+  width:72px;
+  height:72px;
+  object-fit:contain;
+  margin-bottom:10px;
+}
+
+/* ================= PRIDE: estilo visual (solo esto) ================= */
+.pride{
+  display:flex;
+  gap:48px;
+  align-items:center;
+  max-width:1100px;
+  margin:0 auto;
+  padding-top:48px;
+  /* fuerza que el contenido izquierdo use más espacio como en la referencia */
+  justify-content:space-between;
+}
+
+/* columnas: izquierda con ~55%, derecha ~45% */
+.pride .left{flex:0 0 55%; animation: fadeInLeft .7s ease both}
+.pride .right{flex:0 0 42%; display:flex;justify-content:flex-end; animation: fadeInRight .8s ease both}
+
+/* título: mismo corte de letra, tamaño y peso */
+.pride .left h2{
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(32px, 4.6vw, 64px); /* grande y responsivo */
+  font-weight:900;
+  color: #ffffff;
+  margin:0 0 18px 0;
+  line-height:1;
+}
+
+/* "Argentina" en acento azul (igual que referencia) */
+.pride .left h2 .accent{
+  display:inline-block;
+  color:#2f8fff; /* azul vivo similar a la imagen */
+  -webkit-text-stroke: 0px rgba(0,0,0,0.12);
+  margin-left:6px;
+}
+
+/* párrafo descriptivo: tamaño, color y espaciado */
+.pride .left p{
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.8;
+  max-width: 640px;
+  margin: 8px 0 26px 0;
+}
+
+/* lista: eliminar bullets nativos y crear iconos circulares azules */
+.pride .left ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.pride .left ul li{
+  position:relative;
+  padding-left:72px; /* espacio para el icono */
+  margin-bottom:22px;
+  font-size:18px;
+  color:#fff;
+  line-height:1.35;
+  font-weight:600;
+}
+
+/* explicación secundaria tras el título fuerte (usa font-weight normal) */
+.pride .left ul li strong{font-weight:800; color:#ffffff; margin-right:8px}
+
+/* icono circular a la izquierda de cada li */
+/* LISTA: separación y alineación para iconos con imágenes */
+.pride .left ul li{
+  position:relative;
+  padding-left:84px;    /* espacio para el círculo (anchura del icono + separación) */
+  margin-bottom:26px;   /* separación entre items */
+  font-size:18px;
+  color:#fff;
+  line-height:1.35;
+  font-weight:600;
+  display:block;
+  min-height:56px;      /* garantiza altura mínima para centrar el icono */
+}
+
+/* círculo-ícono: ahora usa imagen de fondo, centrado verticalmente */
+.pride .left ul li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%); /* centra verticalmente respecto al texto */
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  display:block;
+  background-color:transparent; /* fallback si la imagen falla */
+  background-size:80% 80%;      /* ajusta tamaño de la imagen dentro del círculo */
+  background-repeat:no-repeat;
+  background-position:center;
+  box-shadow: 0 10px 40px rgba(15,80,255,0.12), inset 0 -6px 10px rgba(0,0,0,0.12);
+  border: 3px solid rgba(255,255,255,0.03); /* opcional: sutil borde para contraste */
+}
+
+/* Ejemplos: sustituye las rutas por tus imágenes reales */
+.pride .left ul li:nth-child(1)::before{
+  background-image: url('/src/assets/icon1.png'); /* ícono 1 (estrella) */
+  background-color: linear-gradient(180deg,#59a9ff,#1b6fff); /* opcional fallback */
+}
+.pride .left ul li:nth-child(2)::before{
+  background-image: url('/src/assets/icon2.png'); /* ícono 2 (rombo) */
+}
+.pride .left ul li:nth-child(3)::before{
+  background-image: url('/src/assets/icon3.png'); /* ícono 3 (cuadrado) */
+}
+
+/* Ajustes responsivos: reducir tamaño y padding en pantallas pequeñas */
+@media (max-width:1024px){
+  .pride .left ul li{ padding-left:72px; margin-bottom:20px; min-height:48px }
+  .pride .left ul li::before{ width:48px; height:48px; }
+}
+
+@media (max-width:600px){
+  .pride .left ul li{ padding-left:64px; margin-bottom:18px; min-height:44px }
+  .pride .left ul li::before{ width:40px; height:40px; background-size:60% 60% }
+}
+
+/* leyendas / subtítulos de cada li (si quieres línea secundaria, deja espacio con <strong> ya incluido) */
+.pride .left ul li span { display:block; font-weight:400; color:var(--muted); margin-top:6px; font-size:15px; }
+
+/* imagen: marco con glow azul y borde dorado sutil + radio */
+.pride .right .image{
+  position:relative;
+  border-radius:14px;
+  overflow:hidden;
+  display:block;
+  align-self:stretch;
+  max-width:520px;
+  box-shadow: 0 18px 60px rgba(2,8,20,0.6); /* sombra oscura principal */
+}
+
+/* imagen interior con borde y glow */
+.pride .right .image img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:12px;
+  /* sutil borde transparente para separación */
+  border:6px solid rgba(255,255,255,0.02);
+  /* glow azul alrededor */
+  box-shadow:
+    0 18px 60px rgba(2,8,20,0.6),
+    0 0 40px 6px rgba(17,92,255,0.10); /* azul exterior */
+}
+
+/* borde dorado exterior (sutil) usando pseudo-elemento */
+.pride .right .image::after{
+  content:"";
+  position:absolute;
+  inset:-8px;
+  border-radius:18px;
+  z-index:-1;
+  background: linear-gradient(90deg, rgba(20,60,255,0.12) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%, rgba(183,131,30,0.12) 100%);
+  filter: blur(6px);
+  pointer-events:none;
+}
+
+/* animaciones (entrada suave) */
+@keyframes fadeInLeft {
+  from { opacity:0; transform: translateX(-22px); }
+  to   { opacity:1; transform: translateX(0); }
+}
+@keyframes fadeInRight {
+  from { opacity:0; transform: translateX(22px); }
+  to   { opacity:1; transform: translateX(0); }
+}
+
+/* responsive: apilar y ajustar tamaños en pantallas pequeñas */
+@media (max-width:1024px){
+  .pride{flex-direction:column;gap:28px;padding-top:28px}
+  .pride .left,.pride .right{flex: 1 1 100%}
+  .pride .right{justify-content:center}
+  .pride .right .image{max-width:760px;width:100%}
+  .pride .left h2{font-size:clamp(28px,5.4vw,44px)}
+  .pride .left p{font-size:16px}
+  .pride .left ul li{padding-left:64px}
+  .pride .left ul li::before{width:44px;height:44px;font-size:18px}
+}
+
+@media (max-width:600px){
+  .pride{padding-top:22px}
+  .pride .left h2{font-size:28px}
+  .pride .left p{font-size:15px}
+  .pride .left ul li{font-size:16px;padding-left:56px;margin-bottom:18px}
+  .pride .left ul li::before{width:40px;height:40px}
+  .pride .right .image{max-width:100%}
+}
+
+/* LEGACY */
+
+.legacy{
+  display:flex;
+  gap:48px;
+  align-items:center;
+  max-width:1100px;
+  margin:20px auto;
+}
+
+.legacy .portrait{
+  flex:0 0 520px;
+  border-radius:18px;
+  overflow:hidden;
+  background:#fff;
+  padding:10px;
+  border:3px solid rgba(255,200,0,0.4);
+  box-shadow:0 0 60px rgba(40,90,255,0.35);
+}
+
+.legacy .portrait img{
+  width:100%;
+  display:block;
+  border-radius:12px;
+}
+
+.legacy .copy{
+  flex:1;
+}
+
+.legacy .copy h2{
+  font-size:46px;
+  font-weight:900;
+  margin-bottom:18px;
+  color:#fff;
+}
+
+.legacy .copy .accent{
+  background:linear-gradient(90deg,#ffd000,#e29a00);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.description{
+  color:#c8d3e0;
+  font-size:18px;
+  line-height:1.6;
+  margin-bottom:28px;
+}
+
+.quote{
+  background:rgba(10,10,10,0.8);
+  border-left:6px solid var(--accent);
+  padding:26px;
+  border-radius:12px;
+  margin-bottom:30px;
+}
+
+.quote-text{
+  font-size:24px;
+  font-weight:700;
+  font-style:italic;
+  color:#fff;
+  margin-bottom:10px;
+}
+
+.quote-author{
+  color:var(--accent);
+  font-weight:700;
+  font-size:18px;
+}
+
+/* lista */
+
+.legacy-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.legacy-list li{
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+}
+
+.legacy-list li::before{
+  content:"+";
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#ffd000;
+  color:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:18px;
+  flex-shrink:0;
+}
+
+.legacy-list strong{
+  display:block;
+  font-size:18px;
+  color:#fff;
+}
+
+.legacy-list span{
+  color:#9fb2c7;
+  font-size:15px;
+}
+/* Gallery */
+.gallery{max-width:1100px;margin:28px auto;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.gallery img{width:100%;height:460px;object-fit:cover;border-radius:8px}
+
+/* FOOTER */
+.site-footer{background:linear-gradient(180deg,#02030a,#071024);padding:42px 0;margin-top:40px;color:#a8b3c6}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1100px;margin:0 auto;padding:0 20px}
+.footer-grid a{color:#9aa7c2;text-decoration:none}
+.footer-bottom{max-width:1100px;margin:18px auto;text-align:center;color:#9aa7c2;padding-bottom:28px}
+
+/* Responsive */
+@media (max-width:1024px){
+  /* Ajustes únicamente relacionados con HERO y layout responsivo existente */
+  .hero h1 .line1{font-size:clamp(56px, 7.2vw, 110px)}
+  .hero h1 .line2{font-size:clamp(64px, 12vw, 140px)}
+  .cards-grid{grid-template-columns:1fr}
+  .m-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .pride{flex-direction:column}
+  .legacy{flex-direction:column}
+}
+@media (max-width:600px){
+  .navlinks{display:none}
+  .hero{height:auto;padding-bottom:48px}
+  .hero .hero-inner{padding:40px 20px}
+  .hero h1 .line1{font-size:42px}
+  .hero h1 .line2{font-size:52px}
+  .m-grid{grid-template-columns:1fr}
+  .gallery img{height:120px}
+}
+
+/* BLOG */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.blog-card {
+  background: rgba(7, 16, 34, 0.7);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.blog-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.blog-card h3 {
+  margin-top: 15px;
+}
+
+.blog-card p {
+  color: #9aa7c2;
+  font-size: 14px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ======================================================
+   ANIMACIONES GENERALES
+====================================================== */
+
+@keyframes fadeUp {
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.section{
+  animation: fadeUp 0.9s ease both;
+}
+
+
+/* ======================================================
+   ANIMACIÓN HERO
+====================================================== */
+
+.hero h1{
+  animation: heroFade 1.1s ease both;
+}
+
+.hero p.lead{
+  animation: heroFade 1.3s ease both;
+}
+
+.hero .cta-wrap{
+  animation: heroFade 1.6s ease both;
+}
+
+@keyframes heroFade{
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+/* ======================================================
+   CARDS ANIMATION
+====================================================== */
+
+.card{
+  transition: all .35s ease;
+  position:relative;
+}
+
+.card:hover{
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.6),
+    0 0 25px rgba(255,208,0,0.18);
+  border:1px solid rgba(255,208,0,0.25);
+}
+
+
+/* ======================================================
+   MILESTONES EFFECT
+====================================================== */
+
+.m-card{
+  transition: all .35s ease;
+}
+
+.m-card:hover{
+  transform:translateY(-6px);
+  box-shadow:
+    0 0 35px rgba(255,208,0,0.15),
+    0 10px 50px rgba(0,0,0,0.6);
+}
+
+
+/* ======================================================
+   GALLERY HOVER
+====================================================== */
+
+.gallery img{
+  transition: all .35s ease;
+}
+
+.gallery img:hover{
+  transform: scale(1.06);
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.6),
+    0 0 25px rgba(255,208,0,0.15);
+}
+
+
+/* ======================================================
+   BUTTON EFFECT
+====================================================== */
+
+.btn{
+  position:relative;
+  overflow:hidden;
+  transition: all .3s ease;
+}
+
+.btn::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.35),
+    transparent
+  );
+  transition:all .6s;
+}
+
+.btn:hover::before{
+  left:100%;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 30px rgba(255,208,0,0.25);
+}
+
+
+/* ======================================================
+   TITLES GLOW EFFECT
+====================================================== */
+
+.section .title{
+  position:relative;
+}
+
+.section .title::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:-10px;
+  width:120px;
+  height:3px;
+  background:linear-gradient(90deg,#ffd000,#e0a400,#ffd000);
+  border-radius:4px;
+  animation: glowLine 3s infinite linear;
+}
+
+@keyframes glowLine{
+  0%{opacity:.3;width:80px}
+  50%{opacity:1;width:140px}
+  100%{opacity:.3;width:80px}
+}   
