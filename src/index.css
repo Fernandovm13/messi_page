@@ -252,14 +252,14 @@ body{margin:0;background:linear-gradient(180deg,#03040a 0%, #061028 60%, #020315
 
 /* Ejemplos: sustituye las rutas por tus imágenes reales */
 .pride .left ul li:nth-child(1)::before{
-  background-image: url('assets/icon1.png'); /* ícono 1 (estrella) */
+  background-image: url('../public/assets/icon1.png'); /* ícono 1 (estrella) */
   background-color: linear-gradient(180deg,#59a9ff,#1b6fff); /* opcional fallback */
 }
 .pride .left ul li:nth-child(2)::before{
-  background-image: url('assets/icon2.png'); /* ícono 2 (rombo) */
+  background-image: url('../public/assets/icon2.png'); /* ícono 2 (rombo) */
 }
 .pride .left ul li:nth-child(3)::before{
-  background-image: url('assets/icon3.png'); /* ícono 3 (cuadrado) */
+  background-image: url('../public/assets/icon3.png'); /* ícono 3 (cuadrado) */
 }
 
 /* Ajustes responsivos: reducir tamaño y padding en pantallas pequeñas */
