@@ -17,10 +17,10 @@ export default function Home(){
       <Legacy />
           <section id="gallery" className="section container">
         <div className="gallery">
-          <img src="/src/assets/m1.jpeg" alt="gallery1"/>
-          <img src="/src/assets/m2.jpeg" alt="gallery2"/>
-          <img src="/src/assets/m3.jpeg" alt="gallery3"/>
-          <img src="/src/assets/m4.jpeg" alt="gallery4"/>
+          <img src="assets/m1.jpeg" alt="gallery1"/>
+          <img src="assets/m2.jpeg" alt="gallery2"/>
+          <img src="assets/m3.jpeg" alt="gallery3"/>
+          <img src="assets/m4.jpeg" alt="gallery4"/>
         </div>
       </section>
     </>

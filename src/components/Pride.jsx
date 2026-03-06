@@ -49,7 +49,7 @@ export default function Pride() {
         <div className="image">
           {/* Un buen 'alt' ayuda al SEO y a la aprobación de AdSense */}
           <img 
-            src="/src/assets/messi1.jpeg" 
+            src="assets/messi1.jpeg" 
             alt="Lionel Messi celebrando con la Selección Argentina" 
           />
         </div>

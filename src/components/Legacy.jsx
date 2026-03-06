@@ -1,12 +1,11 @@
 import React from "react";
-import messi from "../assets/messi2.jpg";
 
 export default function Legacy(){
   return (
    <section id="legacy" className="section legacy container">
 
       <div className="portrait">
-        <img src={messi} alt="Messi portrait" />
+        <img src="assets/messi2.jpg" alt="Messi portrait" />
       </div>
 
       <div className="copy">
