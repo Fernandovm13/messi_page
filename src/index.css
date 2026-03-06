@@ -39,7 +39,7 @@ body{margin:0;background:linear-gradient(180deg,#03040a 0%, #061028 60%, #020315
   justify-content:flex-start; /* fuerza contenido a la izquierda */
   position:relative;
   padding-top:72px;
-  background-image: url('assets/Heroo.jpg');
+  background-image: url('/public/assets/Heroo.jpg');
   background-size:cover;
   background-position:center right;
   overflow:hidden;
