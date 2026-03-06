@@ -1,4 +1,5 @@
 import React from "react";
+import { HashLink } from "react-router-hash-link";
 
 export default function Hero() {
   return (
@@ -16,8 +17,12 @@ export default function Hero() {
         </p>
 
         <div className="cta-wrap">
-          <a href="#career" className="btn primary">Descubre su historia</a>
-          <a href="#gallery" className="btn outline">Ver galería</a>
+          <HashLink smooth to="/#career" className="btn primary">
+            Descubre su historia
+          </HashLink>
+          <HashLink smooth to="/#gallery" className="btn outline">
+            Ver galería
+          </HashLink>
         </div>
       </div>
     </section>
